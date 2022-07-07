@@ -1,0 +1,18 @@
+This spring boot application is build as per requirements given.
+
+To run the application locally, 
++ clone the repo to local device
++ use the command 'mvn spring-boot:run' from the root directory
+
+By default, it uses H2 - in memory database which can be accessed at http://localhost:8080/h2-console
+username: user
+password: password
+
+To persist data even when application is terminated
++ In the application.properties file
++ comment out the configuration for H2 database
++ Uncomment the configuration for MySQL database
++ update username and password
++ create a MySQL datbase named 'records' on your local pc
++ Run the application
+

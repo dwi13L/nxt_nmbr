@@ -37,8 +37,20 @@ public class RecordController {
     @GetMapping(value = "/FetchNextNumber")
     public ResponseEntity<ResponseDto> fetchNextNumber(@RequestBody RecordDto record) {
 
-        ResponseDto response = recordService.fetchNextNumber(record.getCategoryCode());
-        return new ResponseEntity<>(response, HttpStatus.OK);
+        // Handling Exception inside controller for time being instead of using AOP
+
+        try {
+
+            ResponseDto response = recordService.fetchNextNumber(record.getCategoryCode());
+            return new ResponseEntity<>(response, HttpStatus.OK);
+
+        } catch (Exception e) {
+
+            log.error(e.getMessage(), e);
+
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+
+        }
 
     }
 

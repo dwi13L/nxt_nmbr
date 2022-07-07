@@ -20,7 +20,7 @@ public class RecordServiceImpl implements RecordService {
     }
 
     @Override
-    public ResponseDto fetchNextNumber(String categoryCode) {
+    public ResponseDto fetchNextNumber(String categoryCode) throws InterruptedException {
         Optional<Record> result = repository.findById(categoryCode);
 
         if (result.isEmpty()) {
@@ -38,9 +38,11 @@ public class RecordServiceImpl implements RecordService {
 
     /**
      * Utility methods for fetchNextNumber
+     * 
+     * @throws InterruptedException
      */
 
-    private int getNewValue(int oldValue) {
+    private int getNewValue(int oldValue) throws InterruptedException {
 
         int newValue = oldValue + 1;
 

@@ -4,5 +4,5 @@ import dev.danielwilliam.nxtnmbr.model.ResponseDto;
 
 public interface RecordService {
 
-    ResponseDto fetchNextNumber(String categoryCode);
+    ResponseDto fetchNextNumber(String categoryCode) throws InterruptedException;
 }

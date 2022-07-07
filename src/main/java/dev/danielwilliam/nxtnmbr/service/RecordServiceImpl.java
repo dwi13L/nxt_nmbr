@@ -1,6 +1,7 @@
 package dev.danielwilliam.nxtnmbr.service;
 
 import java.util.Optional;
+import java.util.concurrent.TimeUnit;
 
 import org.springframework.stereotype.Service;
 
@@ -35,9 +36,35 @@ public class RecordServiceImpl implements RecordService {
         return new ResponseDto(oldValue, newValue);
     }
 
+    /**
+     * Utility methods for fetchNextNumber
+     */
+
     private int getNewValue(int oldValue) {
-        // TODO:
-        return 0;
+
+        int newValue = oldValue + 1;
+
+        for (int i = oldValue + 1;; i++) {
+            int sum = recursiveSumOfDigits(i);
+            if (sum == 1) {
+                newValue = i;
+                break;
+            }
+        }
+
+        /**
+         * Simulating processing time
+         */
+
+        TimeUnit.SECONDS.sleep(5);
+
+        return newValue;
+    }
+
+    private int recursiveSumOfDigits(int num) {
+        if (num == 0)
+            return 0;
+        return (num % 9 == 0) ? 9 : (num % 9);
     }
 
 }

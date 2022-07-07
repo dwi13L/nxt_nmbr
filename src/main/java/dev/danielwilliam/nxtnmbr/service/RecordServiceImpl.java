@@ -21,6 +21,14 @@ public class RecordServiceImpl implements RecordService {
     }
 
     @Override
+    public Record createRecord(RecordDto recordDto) {
+
+        Record record = Record.builder().categoryCode(recordDto.getCategoryCode()).itemValue(recordDto.getItemValue())
+                .build();
+        return repository.save(record);
+    }
+
+    @Override
     public ResponseDto fetchNextNumber(String categoryCode) throws InterruptedException {
         Optional<Record> result = repository.findById(categoryCode);
 
@@ -68,14 +76,6 @@ public class RecordServiceImpl implements RecordService {
         if (num == 0)
             return 0;
         return (num % 9 == 0) ? 9 : (num % 9);
-    }
-
-    @Override
-    public Record createRecord(RecordDto recordDto) {
-
-        Record record = Record.builder().categoryCode(recordDto.getCategoryCode()).itemValue(recordDto.getItemValue())
-                .build();
-        return repository.save(record);
     }
 
 }

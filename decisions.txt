@@ -1,0 +1,19 @@
+The application uses 3 Tier Architecture namely
++ Controller
++ Service
++ Data Access Layer
+    to maintain seperation of concerns
+
+Controller is writtern to the service specification (interface) and not the implementation, thereby reducing tight coupling.
+
++ FetchNextNumber API
+    - Error handling is done in the Controller itself to keep the application short and simple but ideally must be implemented using AOP
+
+    + "getNewValue" will find the next number in at the most 9 iterations implying a time complexity of O(k) = O(1).
+    + 'recursiveSumOfDigits' method has a time complexity of O(1)
+    + Therefore making the 'fetchNextNumber' method pretty efficient
+
++ Essential unit testing is done but not exhaustively due to time constraint
+    
+    
+

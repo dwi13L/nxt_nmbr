@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import dev.danielwilliam.nxtnmbr.entity.Record;
 import dev.danielwilliam.nxtnmbr.exception.ResourceNotFoundException;
+import dev.danielwilliam.nxtnmbr.model.RecordDto;
 import dev.danielwilliam.nxtnmbr.model.ResponseDto;
 import dev.danielwilliam.nxtnmbr.repository.RecordRepository;
 
@@ -67,6 +68,14 @@ public class RecordServiceImpl implements RecordService {
         if (num == 0)
             return 0;
         return (num % 9 == 0) ? 9 : (num % 9);
+    }
+
+    @Override
+    public Record createRecord(RecordDto recordDto) {
+
+        Record record = Record.builder().categoryCode(recordDto.getCategoryCode()).itemValue(recordDto.getItemValue())
+                .build();
+        return repository.save(record);
     }
 
 }

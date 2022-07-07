@@ -11,4 +11,5 @@ import lombok.NoArgsConstructor;
 @Builder
 public class RecordDto {
     private String categoryCode;
+    private int itemValue;
 }
